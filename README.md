@@ -1,69 +1,42 @@
-# 2.3 JPA with MongoDB
-Create a Spring Boot Application that connects with MongoDB.
+## Código de Honor
+Debes seguir el Código de honor del ingeniero de sistemas para defender el estándar de integridad académica de la ECI:
 
-## Part 1: Basic Mongo DB configuration and Spring Boot Integration
-1. Create a MongoDB Atlas account on [https://www.mongodb.com/atlas-signup-from-mlab](https://www.mongodb.com/atlas-signup-from-mlab):
+Tus respuestas a tareas, cuestionarios y exámenes deben ser tu propio trabajo (excepto para las tareas que permiten explícitamente la colaboración).
 
-    * Select the free tier:
-        ![](img/create-free-account.png)
+No puedes compartir tus soluciones de tareas, cuestionarios o exámenes con otra persona a menos que el instructor lo permita explícitamente. Esto incluye cualquier cosa escrita por ti, como también cualquier solución oficial proporcionada por el docente o el monitor del curso.
 
-2. Configure the MongoDB Cluster:
- 
-    * Create a new Starter Cluster (free) using any Cloud Provider and Region
-   
-        ![](img/select-provider.png)
+No puedes participar en otras actividades que mejorarán de manera deshonesta tus resultados o que mejorarán de manera deshonesta o dañarán los resultados de otras personas.
 
-     * Scroll down to _Cluster Name_ and give the cluster a name. Click on *Create Cluster*
 
-        ![](img/set-cluster-name.png)
+# JPA with MongoDB
 
-    * Wait until the cluster is provisioned and gets ready
-
-        ![](img/cluster-ready.png)   
-
-    * Go to Database Access menu on the left panel and create a user and a password for connecting to the DB
-    
-        ![](img/create-user.png)
-        
-    * Go to Network Access on the left panel and add your IP so that it lets the application connect from your current IP address
-    
-        ![](img/network-access.png)
-
-        ![](img/add-user.png)
-        
-    * Go to the cluster menu on the left panel and click on the _Connect_ button
-    
-        ![](img/connect-to-cluster.png)
-        
-    * Select the option *Connect Your Application* and then copy the connection string. Before using it, replace the \<password\> placeholder with the password of the user you created previously.
-        
-        ![](img/get-connection-string.png)
-        
-        
-         ![](img/copy-connection-string.png)
-        
-        
-3. Clone this repo.
-
-4. Create a new file in the root folder named *application.yml*.
-
-5. Copy the following contents and replace the connection string placeholder with the value you got in the previous step. 
-
-    ``` yaml
-    spring:
-      data:
-        mongodb:
-          uri: <CONNECTION_STRING> 
-    ```
-
-6. Run the project and verify that the connection to the database works properly. Answer the following questions:
+### Punto 6 
 
 - How many customers were created in the database?
+
+   Se crearon 5 clientes en la base de datos
+   
+  ![Customers](https://user-images.githubusercontent.com/48154086/97116759-567be900-16cd-11eb-9a79-4d2ba5ec7fa9.PNG)
+  
 - Where is the *findAll* method implemented?
+
+  El metodo findAll esta implementado en MongoRepository y la interfaz CustomerRepository puede hacer uso de este por que extiende de MongoRepository.
+  
 - Suppose you have more than 1000 products in your database. How would you implement a method for supporting pagination and return pages of 50 products to your frontend?
 - How many products contain the "plus" word in their description?
+
+  Hay 4 productos que contienen la palabra plus en su descripción 
+  
+  ![products](https://user-images.githubusercontent.com/48154086/97116827-e457d400-16cd-11eb-9121-01050f54e089.PNG)
+
 - How many products are returned by the *findByDescriptionContaining* query? Why?
+
 - Which are the collection names where the objects are stored? Where are those names assigned?
+
+Las colecciones donde los objetos se estan guardando son "customer" y "product".
+
+![collections](https://user-images.githubusercontent.com/48154086/97116888-4e707900-16ce-11eb-8553-08f763211175.PNG)
+
 
 5. Create two more models (User and Todo) with the following structure:
 
